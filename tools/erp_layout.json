@@ -1,0 +1,112 @@
+{
+ "01_fox_fisheye": {
+  "full": [
+   908,
+   470
+  ],
+  "crop": [
+   786,
+   334
+  ],
+  "deg_per_px": 0.2026
+ },
+ "03_neon_city_drive": {
+  "full": [
+   1024,
+   416
+  ],
+  "crop": [
+   746,
+   294
+  ],
+  "deg_per_px": 0.2396
+ },
+ "04_ski_pov": {
+  "full": [
+   1024,
+   416
+  ],
+  "crop": [
+   746,
+   294
+  ],
+  "deg_per_px": 0.2396
+ },
+ "05_sea_turtle_reef": {
+  "full": [
+   1024,
+   432
+  ],
+  "crop": [
+   792,
+   298
+  ],
+  "deg_per_px": 0.2377
+ },
+ "06_aurora_lake": {
+  "full": [
+   1024,
+   416
+  ],
+  "crop": [
+   746,
+   294
+  ],
+  "deg_per_px": 0.2396
+ },
+ "07_corgi_cherry": {
+  "full": [
+   1008,
+   478
+  ],
+  "crop": [
+   832,
+   340
+  ],
+  "deg_per_px": 0.2036
+ },
+ "08_coastal_city_sunset": {
+  "full": [
+   778,
+   452
+  ],
+  "crop": [
+   708,
+   308
+  ],
+  "deg_per_px": 0.2114
+ },
+ "10_lantern_festival": {
+  "full": [
+   832,
+   462
+  ],
+  "crop": [
+   740,
+   328
+  ],
+  "deg_per_px": 0.2006
+ },
+ "12_airplane_night_city": {
+  "full": [
+   1024,
+   442
+  ],
+  "crop": [
+   854,
+   302
+  ],
+  "deg_per_px": 0.233
+ },
+ "13_waterfall_canyon": {
+  "full": [
+   1008,
+   478
+  ],
+  "crop": [
+   832,
+   340
+  ],
+  "deg_per_px": 0.2036
+ }
+}

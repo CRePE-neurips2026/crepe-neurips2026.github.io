@@ -1,0 +1,38 @@
+{
+ "panshot_aQVLCO-OOqM-11-1-no_rot_aug_0": {
+  "clip": "aQVLCO-OOqM-11-1-no_rot_aug_0",
+  "fov": 167.0,
+  "xi": 1.75,
+  "source": "PanShot test split (aQVLCO-OOqM-11-1-no_rot_aug_0-fov167-xi1.75.mp4)"
+ },
+ "panshot_N99hmkAJwlQ-3-0-yaw_aug_0": {
+  "clip": "N99hmkAJwlQ-3-0-yaw_aug_0",
+  "fov": 148.0,
+  "xi": 1.77,
+  "source": "PanShot test split (N99hmkAJwlQ-3-0-yaw_aug_0-fov148-xi1.77.mp4)"
+ },
+ "panshot_N99hmkAJwlQ-3-0-linear_aug_0": {
+  "clip": "N99hmkAJwlQ-3-0-linear_aug_0",
+  "fov": 99.0,
+  "xi": 0.0,
+  "source": "PanShot test split (N99hmkAJwlQ-3-0-linear_aug_0-fov99-xi0.00.mp4)"
+ },
+ "panshot_1jVPI3bNCBc-5-0-no_rot_aug_0": {
+  "clip": "1jVPI3bNCBc-5-0-no_rot_aug_0",
+  "fov": 97.0,
+  "xi": 0.0,
+  "source": "PanShot test split (1jVPI3bNCBc-5-0-no_rot_aug_0-fov97-xi0.00.mp4)"
+ },
+ "panshot_HTdKkiu771g-3-0-no_rot_aug_0": {
+  "clip": "HTdKkiu771g-3-0-no_rot_aug_0",
+  "fov": 193.0,
+  "xi": 1.58,
+  "source": "PanShot test split (HTdKkiu771g-3-0-no_rot_aug_0-fov193-xi1.58.mp4)"
+ },
+ "panshot_YUPoNo1j420-5-0-no_rot_aug_0": {
+  "clip": "YUPoNo1j420-5-0-no_rot_aug_0",
+  "fov": 101.0,
+  "xi": 0.0,
+  "source": "PanShot test split (YUPoNo1j420-5-0-no_rot_aug_0-fov101-xi0.00.mp4)"
+ }
+}

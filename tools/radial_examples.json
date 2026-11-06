@@ -1,0 +1,14 @@
+[
+ {"id": "davis_camel", "sample": "davis_camel", "group": "DAVIS", "title": "Camel → brass mechanical camel", "source": "DAVIS 2016 (CC BY-NC 4.0), camera estimated with ViPE"},
+ {"id": "davis_car-turn", "sample": "davis_car-turn", "group": "DAVIS", "title": "Car → rally car on a snowy road", "source": "DAVIS 2016 (CC BY-NC 4.0), camera estimated with ViPE"},
+ {"id": "davis_parkour", "sample": "davis_parkour", "group": "DAVIS", "title": "Parkour → humanoid robot", "source": "DAVIS 2016 (CC BY-NC 4.0), camera estimated with ViPE"},
+ {"id": "davis_hike", "sample": "davis_hike", "group": "DAVIS", "title": "Hiker → alien planet", "source": "DAVIS 2016 (CC BY-NC 4.0), camera estimated with ViPE"},
+ {"id": "davis_bmx-bumps", "sample": "davis_bmx-bumps", "group": "DAVIS", "title": "BMX → astronaut on Mars", "source": "DAVIS 2016 (CC BY-NC 4.0), camera estimated with ViPE", "modes": ["transfer"]},
+ {"id": "davis_train", "sample": "davis_train", "group": "DAVIS", "title": "Model railway → Christmas village", "source": "DAVIS 2016 (CC BY-NC 4.0), camera estimated with ViPE", "modes": ["transfer"]},
+ {"id": "panshot_square", "sample": "panshot_W7MqlUCP_40-2-0-yaw_aug_0-fov150-xi1.36", "group": "PanShot", "title": "City square → robots (fisheye)", "source": "PanShot test split (CC BY 4.0), ground-truth camera and lens"},
+ {"id": "panshot_park", "sample": "panshot_MT0dpEdg554-23-0-yaw_aug_0-fov177-xi2.27", "group": "PanShot", "title": "Urban park → futuristic park (fisheye)", "source": "PanShot test split (CC BY 4.0), ground-truth camera and lens"},
+ {"id": "panshot_greenhouse", "sample": "panshot_aQVLCO-OOqM-7-0-linear_aug_0-fov116-xi0.84", "group": "PanShot", "title": "Greenhouse → glowing greenhouse (wide-angle)", "source": "PanShot test split (CC BY 4.0), ground-truth camera and lens"},
+ {"id": "panshot_crane", "sample": "panshot_nnxY6yswi9E-12-0-yaw_aug_0-fov149-xi1.15", "group": "PanShot", "title": "Construction site → snowy site (fisheye)", "source": "PanShot test split (CC BY 4.0), ground-truth camera and lens"},
+ {"id": "ai_walking", "sample": "walking_man", "group": "AI-generated sources", "title": "Walking person → robot in a gallery", "source": "AI-generated source video, camera estimated with ViPE"},
+ {"id": "ai_monkey", "sample": "traj_monkey_child", "group": "AI-generated sources", "title": "Monkey → small robot playing chess", "source": "AI-generated source video, camera estimated with ViPE"}
+]

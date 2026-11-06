@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CRePE: Curved Ray Expectation Positional Encoding (NeurIPS 2026)</title>
+  <meta name="description" content="CRePE: Curved Ray Expectation Positional Encoding for Unified-Camera-Controlled Video Generation (NeurIPS 2026). Camera, lens and orientation control for text-to-video under pinhole, wide-angle and fisheye lenses.">
+  <meta property="og:title" content="CRePE: Curved Ray Expectation Positional Encoding (NeurIPS 2026)">
+  <meta property="og:description" content="NeurIPS 2026. Camera-, lens- and orientation-controlled video generation under pinhole, wide-angle and fisheye lenses.">
+  <meta property="og:image" content="https://crepe-neurips2026.github.io/static/images/figure1.jpg">
+  <meta property="og:url" content="https://crepe-neurips2026.github.io/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="static/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="venue">NeurIPS 2026</p>
+    <h1><span class="brand">CRePE</span>: Curved Ray Expectation Positional Encoding<br class="br-wide"> for Unified-Camera-Controlled Video Generation</h1>
+    <p class="authors">
+      <span>Seonghyun Jin<sup>1*</sup></span>
+      <span>Youngmin Kim<sup>1,2*‡</sup></span>
+      <span>Sunwoo Park<sup>1*</sup></span>
+      <span>Jong Chul Ye<sup>1†</sup></span>
+    </p>
+    <p class="affils">
+      <span><sup>1</sup>Kim Jaechul Graduate School of AI, KAIST</span>
+      <span><sup>2</sup>Korea University</span>
+    </p>
+    <p class="notes">* equal contribution &nbsp;·&nbsp; † corresponding author &nbsp;·&nbsp; ‡ work done during an internship at KAIST</p>
+    <nav class="links" aria-label="Resources">
+      <a class="btn" href="https://arxiv.org/abs/2605.12938">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 2v6h6M9 13h8M9 17h8" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        Paper</a>
+      <a class="btn" href="https://github.com/jinotter3/CRePE">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg>
+        Code</a>
+      <a class="btn" href="https://huggingface.co/jinotter3/CRePE">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        Weights</a>
+      <a class="btn" href="#bibtex">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h4v4H8c0 2 1 3 3 3v3c-3 0-4-2-4-5zm7 0h4v4h-3c0 2 1 3 3 3v3c-3 0-4-2-4-5z" fill="currentColor"/></svg>
+        BibTeX</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="wrap teaser">
+    <div class="teaser-strip" aria-label="Example videos">
+      <figure>
+        <video data-src="static/videos/03_neon_city_drive/crepe_seed1.mp4" poster="static/posters/03_neon_city_drive/crepe_seed1.jpg" muted loop playsinline preload="none"></video>
+        <figcaption>FoV 180°, ξ = 2.0</figcaption>
+      </figure>
+      <figure>
+        <video data-src="static/videos/05_sea_turtle_reef/crepe_seed1.mp4" poster="static/posters/05_sea_turtle_reef/crepe_seed1.jpg" muted loop playsinline preload="none"></video>
+        <figcaption>FoV 190°, ξ = 2.1</figcaption>
+      </figure>
+      <figure>
+        <video data-src="static/videos/12_airplane_night_city/crepe_seed0.mp4" poster="static/posters/12_airplane_night_city/crepe_seed0.jpg" muted loop playsinline preload="none"></video>
+        <figcaption>FoV 200°, ξ = 2.3</figcaption>
+      </figure>
+    </div>
+    <p class="tldr"><strong>TL;DR.</strong> CRePE tells a video diffusion transformer <em>where</em> scene content lies along each
+      camera ray, and how that ray bends under the lens of every other view. With only a prompt, a camera trajectory and
+      lens parameters, it generates videos that follow the camera motion under pinhole, wide-angle and fisheye lenses
+      (up to 200° field of view).</p>
+  </section>
+
+  <section class="wrap" id="method">
+    <h2>Method</h2>
+    <p class="lead">Each token predicts where its content lies along its camera ray. CRePE projects that range into
+      every other view through its lens and encodes the expected RoPE phase along the curved path.</p>
+    <div id="crepe3d" class="c3">
+      <div class="c3-bar">
+        <div class="seg c3-steps" role="group" aria-label="Step">
+          <button type="button" class="c3-step" aria-pressed="true">① Radial distribution</button>
+          <button type="button" class="c3-step" aria-pressed="false">② Breakpoints</button>
+          <button type="button" class="c3-step" aria-pressed="false">③ Curved projection</button>
+          <button type="button" class="c3-step" aria-pressed="false">④ Expected RoPE</button>
+        </div>
+        <button type="button" class="c3-tour" aria-pressed="true">Pause tour</button>
+      </div>
+      <div class="c3-canvas">
+        <canvas aria-label="3D view: key camera with its fisheye frame, the key token's ray with its radial interval and breakpoints, and their projection into the query camera"></canvas>
+        <div class="c3-labels" aria-hidden="true"></div>
+        <p class="c3-caption"></p>
+        <p class="c3-nogl">3D view needs WebGL.</p>
+      </div>
+      <div class="c3-panels">
+        <figure class="c3-key"><canvas></canvas><figcaption>Key frame · click to pick a token</figcaption></figure>
+        <figure class="c3-query"><canvas></canvas><figcaption>Query frame · curved path, endpoint chord dashed</figcaption></figure>
+        <figure class="c3-phasor"><canvas></canvas><figcaption>Expected phasor</figcaption></figure>
+      </div>
+      <div class="c3-controls">
+        <label>μ <input type="range" name="mu" min="-3" max="3" step="0.01"><span class="v v-mu"></span></label>
+        <label>σ <input type="range" name="sigma" min="0" max="1.5" step="0.01"><span class="v v-sigma"></span></label>
+        <span class="c3-ctl">query <span class="seg c3-frame" role="group" aria-label="Query frame">
+          <button type="button" data-frame="20" aria-pressed="false">20</button><button type="button" data-frame="40" aria-pressed="false">40</button><button type="button" data-frame="60" aria-pressed="false">60</button><button type="button" data-frame="80" aria-pressed="true">80</button></span></span>
+        <span class="c3-ctl">c <span class="seg c3-coord" role="group" aria-label="Encoded coordinate">
+          <button type="button" data-coord="0" aria-pressed="true">x</button><button type="button" data-coord="1" aria-pressed="false">y</button><button type="button" data-coord="2" aria-pressed="false">range</button></span></span>
+        <label>ω <input type="range" name="freq" min="1" max="8" step="1"><span class="v v-freq"></span></label>
+      </div>
+    </div>
+    <div class="cols3">
+      <div>
+        <h3>Curved ray expectation</h3>
+        <p class="formula">𝔼[e<sup>iωc</sup>] = 1/(K−1) · Σ<sub>k</sub>
+          (e<sup>iωc<sub>k+1</sub></sup> − e<sup>iωc<sub>k</sub></sup>) / (iω (c<sub>k+1</sub> − c<sub>k</sub>))</p>
+      </div>
+      <div>
+        <h3>Radial anchor</h3>
+        <p>Pseudo radial distances (UniK3D) supervise one layer during training. No depth input at inference.</p>
+      </div>
+      <div>
+        <h3>Radial MixForcing</h3>
+        <p>Training sometimes substitutes a supplied radial map, so external maps can steer generation.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="showcase">
+    <h2>Lens showcase</h2>
+    <p class="lead">Each clip is generated from a prompt, a camera trajectory and a lens. Switch to the UCPE baseline
+      (same inputs), other seeds, or an equirectangular view that undoes the lens.</p>
+    <div id="showcase-grid" class="grid"></div>
+    <noscript><p>The interactive gallery needs JavaScript. All videos are in <code>static/videos/</code>.</p></noscript>
+  </section>
+
+  <section class="wrap" id="comparison">
+    <h2>Camera control comparison</h2>
+    <p class="lead">Zero-shot camera control on novel, fast camera trajectories: real camera paths of held-out RealCam-Vid
+      clips (metric scale, pinhole lens), unseen in training. Over 30 such trajectories (38–80° turn, 6–18 m travel),
+      CRePE's median rotation error is 12.8° versus 18.6° for UCPE. Both models get the same prompt, camera and seed;
+      cameras are recovered from the generated videos with ViPE. Selected examples.</p>
+    <div id="camera-compare" class="cc">
+      <div class="cc-player">
+        <div class="cc-videos">
+          <figure class="cc-ref"><video data-role="reference" muted loop playsinline preload="none"></video>
+            <figcaption><i class="sw requested"></i><span class="cc-ref-label">Reference</span></figcaption></figure>
+          <figure><video data-role="crepe" muted loop playsinline preload="none"></video>
+            <figcaption><i class="sw crepe"></i>CRePE</figcaption></figure>
+          <figure><video data-role="ucpe" muted loop playsinline preload="none"></video>
+            <figcaption><i class="sw ucpe"></i>UCPE</figcaption></figure>
+        </div>
+        <div class="cc-transport">
+          <button type="button" class="cc-play" aria-label="Pause">Pause</button>
+          <input type="range" class="cc-scrub" min="0" max="80" step="1" value="0" aria-label="Frame">
+          <span class="cc-frame">frame 0</span>
+        </div>
+        <div class="cc-plots">
+          <figure class="cc-3d">
+            <div class="cc-canvas"><canvas aria-label="3D view of the requested camera trajectory and the trajectories recovered from the CRePE and UCPE videos"></canvas></div>
+            <figcaption>Recovered cameras, top view (dashed: requested). Drag to rotate.</figcaption>
+          </figure>
+          <figure class="cc-pan">
+            <svg viewBox="0 0 320 190" role="img"></svg>
+            <figcaption>Pan angle vs. frame</figcaption>
+            <table class="cc-table">
+              <thead><tr><th></th><th>Pan at end</th><th>Rot. err.</th><th>CamMC</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </figure>
+        </div>
+        <div class="cc-meta">
+          <h3 class="cc-title"></h3>
+          <div class="chips cc-chips"></div>
+          <p class="caption cc-prompt" title="Show full prompt"></p>
+        </div>
+      </div>
+      <div class="cc-thumbs"></div>
+    </div>
+    <noscript><p>The interactive comparison needs JavaScript.</p></noscript>
+  </section>
+
+  <section class="wrap" id="geometry">
+    <h2>Internal geometry</h2>
+    <p class="lead">What CRePE's radial head predicts at layer 15 while generating each clip: a positional variable
+      inside attention, not a depth output. <span class="geo-scale">near <i></i> far</span></p>
+    <div id="geometry-grid" class="geo-grid"></div>
+  </section>
+
+  <section class="wrap" id="radial-control">
+    <h2>External radial-map control</h2>
+    <p class="lead">With Radial MixForcing, the same pathway accepts a radial map: generate a new video from a source
+      video's camera and geometry, or transfer its motion. Radial map: red near, blue far.</p>
+    <div id="radial-gallery" class="rg">
+      <div class="rg-player">
+        <div class="rg-videos">
+          <figure><video data-role="reference" muted loop playsinline preload="none"></video><figcaption>Source video</figcaption></figure>
+          <figure><video data-role="radial_map" muted loop playsinline preload="none"></video><figcaption>Supplied radial map</figcaption></figure>
+          <figure><video data-role="output" data-master muted loop playsinline preload="none"></video><figcaption>CRePE-Mix (generated)</figcaption></figure>
+        </div>
+        <div class="rg-meta">
+          <h3 class="rg-title"></h3>
+          <div class="chips rg-chips"></div>
+          <div class="controls rg-modes"></div>
+          <p class="caption rg-prompt" title="Show full prompt"></p>
+          <p class="small rg-source"></p>
+        </div>
+      </div>
+      <div class="rg-thumbs"></div>
+    </div>
+    <noscript><p>The interactive gallery needs JavaScript. All videos are in <code>static/videos/radial/</code>.</p></noscript>
+  </section>
+
+  <section class="wrap" id="results">
+    <h2>Results</h2>
+    <p class="lead">PanShot test set (340 clips). Full metrics and ablations are in the paper.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Subset</th><th>Method</th><th>CamMC ↓</th><th>CS-I ↑</th><th>CS-T ↑</th><th>k<sub>1</sub> ↓</th><th>k<sub>2</sub> ↓</th><th>Gravity ↓</th><th>Aes. Qual. ↑</th><th>BG Cons. ↑</th></tr>
+        </thead>
+        <tbody>
+          <tr class="group"><td rowspan="3">Non-pinhole</td><td>ReCamMaster</td><td>54.56</td><td>98.69</td><td>24.60</td><td>0.186</td><td>0.154</td><td>11.19</td><td>0.5596</td><td>0.9484</td></tr>
+          <tr><td>UCPE</td><td>20.60</td><td>98.80</td><td>24.78</td><td>0.183</td><td>0.154</td><td>7.08</td><td>0.5616</td><td>0.9537</td></tr>
+          <tr class="ours"><td>CRePE</td><td><b>19.02</b></td><td><b>98.81</b></td><td><b>24.80</b></td><td><b>0.157</b></td><td><b>0.116</b></td><td><b>6.27</b></td><td><b>0.5639</b></td><td><b>0.9542</b></td></tr>
+          <tr class="group"><td rowspan="3">Pinhole</td><td>ReCamMaster</td><td>57.83</td><td>98.65</td><td>25.58</td><td>0.179</td><td>0.152</td><td>10.98</td><td>0.5605</td><td>0.9441</td></tr>
+          <tr><td>UCPE</td><td>18.50</td><td>98.59</td><td>25.86</td><td>0.175</td><td>0.151</td><td>7.10</td><td>0.5619</td><td>0.9457</td></tr>
+          <tr class="ours"><td>CRePE</td><td><b>15.33</b></td><td><b>98.65</b></td><td><b>25.93</b></td><td><b>0.153</b></td><td><b>0.113</b></td><td><b>6.13</b></td><td><b>0.5620</b></td><td><b>0.9471</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="wrap" id="architecture">
+    <h2>Architecture</h2>
+    <figure class="paper-figure narrow first">
+      <img src="static/images/architecture.webp" width="2000" height="1010" loading="lazy"
+           alt="Architecture: the Geometric Attention Adapter runs in parallel with self-attention in each DiT layer; layers 11 to 20 use CRePE, the others relative-ray encoding.">
+      <figcaption>Geometric Attention Adapter: CRePE in the middle 10 DiT blocks, relative-ray encoding elsewhere.</figcaption>
+    </figure>
+  </section>
+
+  <section class="wrap" id="bibtex">
+    <h2>BibTeX</h2>
+    <div class="bib">
+      <button type="button" class="copy" data-copy="#bibtex-code">Copy</button>
+<pre id="bibtex-code"><code>@inproceedings{jin2026crepe,
+  title     = {CRePE: Curved Ray Expectation Positional Encoding for Unified-Camera-Controlled Video Generation},
+  author    = {Jin, Seonghyun and Kim, Youngmin and Park, Sunwoo and Ye, Jong Chul},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2026}
+}</code></pre>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap footer">
+  <p>We build on <a href="https://github.com/Wan-Video/Wan2.1">Wan2.1</a>, <a href="https://github.com/chengzhag/UCPE">UCPE</a>
+    and its PanShot dataset, <a href="https://github.com/Lucas-707/RayRoPE">RayRoPE</a>,
+    <a href="https://github.com/liruilong940607/prope">PRoPE</a> and <a href="https://github.com/lpiccinelli-eth/UniK3D">UniK3D</a>.</p>
+</footer>
+
+<script src="static/js/showcase-data.js"></script>
+<script src="static/js/camera-data.js"></script>
+<script src="static/js/geometry-data.js"></script>
+<script src="static/js/radial-data.js"></script>
+<script src="static/js/main.js"></script>
+<script src="static/js/crepe3d-data.js"></script>
+<script type="module" src="static/js/crepe3d.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+# full-quality originals of the sample videos (re-encode with tools/prepare_videos.py)
+_source_videos/
+.DS_Store
+__pycache__/
